@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.maxSize" value="10485760"></constant>
+    <package name="default" namespace="/test" extends="struts-default">
+
+        <action name="index" class="com.sun.actions.HelloWorldAction" method="excute">
+            <result name="hellworld" type="redirect">/helloworld.jsp?username=${username}</result>
+        </action>
+        
+        <action name="fileupload" class="com.sun.actions.FileUploadAction" method="excute">
+            <result name="success">/WEB-INF/pages/fileuploadresult.jsp</result>
+        </action>
+        
+        <action name="parampost" class="com.sun.actions.parampostAction" method="excute">
+            <result name="parampost">/WEB-INF/pages/parampost.jsp</result>
+        </action>
+        
+        <action name="redirect">
+        	<result type="redirect">/redirect.jsp</result>
+        </action>
+        
+        <action name="redirectAction">
+        	<result type="redirectAction">index</result>
+        </action>
+        
+    </package>
+    
+    <package name="other" namespace="/test01" extends="struts-default">
+    	<action name="xxx">
+    		<result type="redirectAction">
+    			<param name="actionName">index</param>
+    			<param name="namespace">/test</param>
+    		</result>
+    	</action>
+    </package>
+
+</struts>
