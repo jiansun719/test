@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping >
+
+    <class name="com.sun.domain.Department" table="department">
+        <id name="id" type="int" column="departmentId">
+            <generator class="native"/>
+        </id>
+		<property name="name" type="string" column="departmentName"></property>
+		<set name="employeeSet" inverse="true" cascade="delete">
+			<key column="departmentId"></key>
+			<one-to-many class="com.sun.domain.Employee"/>
+		</set>
+    </class>
+
+
+</hibernate-mapping>
+
